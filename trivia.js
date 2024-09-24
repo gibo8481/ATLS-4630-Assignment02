@@ -16,12 +16,12 @@ const roundOneQuestions = [
 ];
 
 const nextRoundButton = document.getElementById('next-round-button');
-const roundTwo = document.getElementById('round-to');
+const roundTwo = document.getElementById('round-two'); // fix id from to to two
 const roundTwoQuestions = [
   {
     input: document.getElementById('galilean-moons-input'),
     reactionArea: document.getElementById('galilean-moons-reaction'),
-    answer: 4,
+    answer: '4', // add '' around the answer
   },
   {
     input: document.getElementById('surface-temp-input'),
@@ -33,7 +33,7 @@ const roundTwoQuestions = [
 const finishButton = document.getElementById('finish-button');
 const finalScore = document.getElementById('final-score');
 
-const scores = [];
+const scores = []; 
 
 startButton.addEventListener('click', startGame);
 
@@ -45,7 +45,7 @@ function startGame() {
     const question = roundOneQuestions[i];
 
     function answerQuestion() {
-      const score;
+      let score; // const immutable, changed to "let" to be updated
       if (question.input.value == question.answer) {
         score = 1;
 
@@ -55,7 +55,7 @@ function startGame() {
       } else {
         score = 0;
 
-        question.reactionArea.innerText = "Not quite right, but you're almost there!";
+        question.reactionArea.innerText = 'Not quite right, but you\'re almost there!'; // change to character, add \ for apostrophe 
         question.reactionArea.classList.add('incorrect');
         question.reactionArea.classList.remove('correct');
       }
@@ -89,7 +89,7 @@ function startRoundTwo(event) {
 
   roundOneQuestions.forEach(question => question.deactivate());
 
-  for (let i = 0; i < roundTwoQuestions.size; i++) {
+  for (let i = 0; i < roundTwoQuestions.length; i++) { //arrays use length instead of size
     const question = roundTwoQuestions[i];
 
     function answerQuestion() {
@@ -103,7 +103,7 @@ function startRoundTwo(event) {
       } else {
         score = 0;
 
-        question.reactionArea.innerText = 'Not quite right, but you're almost there!';
+        question.reactionArea.innerText = 'Not quite right, but you\'re almost there!';
         question.reactionArea.classList.add('incorrect');
         question.reactionArea.classList.remove('correct');
       }
@@ -141,7 +141,7 @@ function finishGame(event) {
   finishButton.classList.add('hidden');
   finalScore.classList.remove('hidden');
 
-  const sum = 0;
+  let sum = 0; // change from const to let
   for (const score of scores) {
     sum += score;
   }
